@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <title>Api de Post</title>
+
+    <script>
+        let url='https://jsonplaceholder.typicode.com/posts';
+        fetch(url)
+            .then(response => response.json())
+            .then(data => mostrarData(data))
+            .catch(error => console.log(error))
+        const mostrarData=(data)=>{
+            console.log(data)
+            let body=""
+            for(var i=0; i<data.length; i++)
+            {
+                if (data[i].userId==2){
+                    body+=`<tr>
+                        <td>${data[i].userId}</td>
+                        <td>${data[i].id}</td>
+                        <td>${data[i].title}</td>
+                        <td><p class="body">${data[i].body}</p></td>
+                        </tr>`
+                }
+            }
+            document.getElementById('data').innerHTML=body;
+        }
+    </script>
+    <style>
+         
+        .body{
+            color:crimson;
+            text-align:justify;
+            font-family: 'Times New Roman', Times, serif;
+            padding:5px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h2>Api de usuarios</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>UserId</th>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Body</th>
+                </tr>
+            </thead>
+            <tbody id="data">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
